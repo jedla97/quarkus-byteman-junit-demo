@@ -1,0 +1,12 @@
+RULE Modify string when flag is true
+CLASS GreetingResource
+METHOD createString
+AT READ $modify
+BIND response = $response1;
+IF $this.modify == true
+DO traceln("This modify the response2 string");
+    $response2 = "Byteman";
+    $this.modified = !($this.modified);
+    traceln("The modified final string will look like this: " + response + $response2);
+ENDRULE
+

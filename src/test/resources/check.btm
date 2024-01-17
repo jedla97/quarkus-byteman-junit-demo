@@ -1,0 +1,16 @@
+RULE Throw error at exit of method
+CLASS quarkus.qe.byteman.GreetingResource
+METHOD helperMethod
+AT ENTRY
+IF true
+DO throw new RuntimeException("Exception from byteman was thrown");
+ENDRULE
+
+RULE Change value of variable
+CLASS GreetingResource
+METHOD modifyVariable
+AT READ $response
+IF true
+DO $response = "Hello from Byteman"
+ENDRULE
+
